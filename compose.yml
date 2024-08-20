@@ -24,25 +24,30 @@ services:
     networks:
       - asa-net
 
-portal:
+
+  web01:
+      image: nginx
+      container_name: web01
+      networks:
+        - asa-net
+
+  portal:
     image: wordpress
     restart: always
     container_name: portal
-    #ports:
-    #  - 8080:80
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: db_asa_user
       WORDPRESS_DB_PASSWORD: db_asa_pass
       WORDPRESS_DB_NAME: db_wordpress
     networks:
-    - asa-network
+      - asa-net
     volumes:
       - wordpress:/var/www/html
     depends_on:
       - db
 
-db:
+  db:
     image: mysql:5.7
     restart: always
     container_name: db
@@ -51,14 +56,18 @@ db:
       MYSQL_USER: db_asa_user
       MYSQL_PASSWORD: db_asa_pass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
-
     networks:
-    - asa-net
+      - asa-net
     volumes:
       - db:/var/lib/mysql
+   
 
 networks:
   asa-net:
     driver: bridge
+
+volumes:
+  wordpress:
+  db:
 
 
