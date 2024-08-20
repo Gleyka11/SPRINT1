@@ -42,7 +42,7 @@ portal:
     depends_on:
       - db
 
-  db:
+db:
     image: mysql:5.7
     restart: always
     container_name: db
@@ -50,7 +50,12 @@ portal:
       MYSQL_DATABASE: db_wordpress
       MYSQL_USER: db_asa_user
       MYSQL_PASSWORD: db_asa_pass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1' 
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+
+    networks:
+    - asa-net
+    volumes:
+      - db:/var/lib/mysql
 
 networks:
   asa-net:
