@@ -6,13 +6,13 @@ RUN apt upgrade -y
 
 RUN apt install bind9 bind9-utils dnsutils -y
 
-#COPY ./etc/* /etc/bind
+COPY ./etc/* /etc/bind
 
-COPY named.conf.local /etc/bind 
+#COPY named.conf.local /etc/bind 
 
-COPY asa.zones /etc/bind 
+#COPY asa.zones /etc/bind 
 
-COPY db.asa.br /etc/bind 
+#COPY ./etc/db.asa.br /etc/bind 
 
 # Expose Ports
 EXPOSE 53/tcp

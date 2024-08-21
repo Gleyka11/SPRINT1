@@ -11,7 +11,7 @@ services:
     networks:
       - asa-net
 
-  proxy:
+  nginx:
     build: 
       context: ./nginx
       dockerfile: Dockerfile
@@ -26,10 +26,13 @@ services:
 
 
   web01:
-      image: nginx
-      container_name: web01
-      networks:
-        - asa-net
+    build:
+      context: ./portal
+      dockerfile: Dockerfile
+    image: web01
+    container_name: web01
+    networks:
+      - asa-net
 
   portal:
     image: wordpress
