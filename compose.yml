@@ -34,10 +34,10 @@ services:
     networks:
       - asa-net
 
-  portal:
+  wordpress:
     image: wordpress
     restart: always
-    container_name: portal
+    container_name: wordpress
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: db_asa_user
