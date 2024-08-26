@@ -1,10 +1,11 @@
 FROM ubuntu:latest
 
-RUN apt update 
+RUN apt-get update && apt-get install -y bind9 bind9utils bind9-doc
 
-RUN apt upgrade -y
+RUN mkdir -p /run/named && \
+    chown bind:bind /run/named && \
+    chmod 755 /run/named
 
-RUN apt install bind9 bind9-utils dnsutils -y
 
 COPY ./etc/* /etc/bind
 

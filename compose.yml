@@ -17,9 +17,14 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     image: proxy
+    volumes:
+      - ./nginx/certificado.crt:/etc/nginx/ssl/certificado.crt
+      - ./nginx/certificado.key:/etc/nginx/ssl/certificado.key
     container_name: proxy
     ports:
       - "8080:80"
+    command:
+      sh -c 'nginx -g "daemon off;"'
     depends_on:
       - web01
     networks:
@@ -35,7 +40,7 @@ services:
     networks:
       - asa-net
 
-  wordpress:
+  portal:
     image: wordpress
     restart: always
     container_name: wordpress
@@ -60,6 +65,7 @@ services:
       MYSQL_USER: db_asa_user
       MYSQL_PASSWORD: db_asa_pass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    
     networks:
       - asa-net
     volumes:
