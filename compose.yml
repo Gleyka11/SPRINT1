@@ -17,28 +17,17 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     image: proxy
-    volumes:
-      - ./nginx/certificado.crt:/etc/nginx/ssl/certificado.crt
-      - ./nginx/certificado.key:/etc/nginx/ssl/certificado.key
     container_name: proxy
     ports:
-      - "8080:80"
-    command:
-      sh -c 'nginx -g "daemon off;"'
+      - "80:80"
+      - "443:443"
     depends_on:
-      - web01
+      - portal
     networks:
       - asa-net
 
 
-  web01:
-    build:
-      context: ./portal
-      dockerfile: Dockerfile
-    image: web01
-    container_name: web01
-    networks:
-      - asa-net
+
 
   portal:
     image: wordpress
