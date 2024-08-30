@@ -26,7 +26,7 @@
 
 <i>Para subir os containers no docker:</i>
 
-    Docker-compose up
+    Docker-compose up --build
 
 
 <b><i>Dica para criar o seu certificado ssl:</b></i>
