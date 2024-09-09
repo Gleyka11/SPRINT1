@@ -29,17 +29,4 @@
     Docker-compose up --build
 
 
-<b><i>Dica para criar o seu certificado ssl:</b></i>
-
-Faça o update e upgrade e depois instale o nginx:
-
-    apt-get install nginx
-    
-Inicie o serviço Nginx: 
-
-    systemctl start nginx
-
-Siga o passo a passo:
-
-    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-on-centos-7
 
