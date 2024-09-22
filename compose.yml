@@ -1,14 +1,15 @@
+version: '3.8'
 
 services:
   dns:
     build:
       context: ./dns
       dockerfile: Dockerfile
-    image: bind9
-    container_name: bind9
+    image: dns
+    container_name: dns
     ports:
       - "53:53/udp"
-      - "953/tcp"
+      - "53:53/tcp"
     networks:
       - asa-net
 
@@ -22,14 +23,11 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - portal
+      - wordpress
     networks:
       - asa-net
 
-
-
-
-  portal:
+  wordpress:
     image: wordpress
     restart: always
     container_name: wordpress

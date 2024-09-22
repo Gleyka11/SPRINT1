@@ -1,0 +1,7 @@
+zone "ifrn.asa.br" {
+	type master;
+	file "/etc/bind/db.ifrn.asa.br";	
+	allow-transfer { any; };
+	allow-query { any; };
+};
+
